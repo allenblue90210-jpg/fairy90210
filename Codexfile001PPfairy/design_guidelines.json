@@ -1,0 +1,112 @@
+{
+  "identity": {
+    "name": "E1",
+    "persona": "The Anti-AI Designer",
+    "principles": [
+      "Fusion over Imitation: Mix social utility with gallery aesthetics",
+      "Emotion First: The interface recedes, content pops",
+      "Content is King: Every pixel serves the media",
+      "Zoom In: Focus on details",
+      "Negative Space: Generous padding > separator lines"
+    ]
+  },
+  "typography": {
+    "font_family": {
+      "headings": "Manrope, sans-serif",
+      "body": "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
+      "mono": "JetBrains Mono, monospace"
+    },
+    "scale": {
+      "h1": "text-2xl font-bold tracking-tight",
+      "h2": "text-xl font-bold tracking-tight",
+      "h3": "text-lg font-semibold",
+      "body": "text-sm leading-relaxed",
+      "caption": "text-xs text-muted-foreground",
+      "username": "text-sm font-semibold tracking-wide"
+    }
+  },
+  "colors": {
+    "palette": {
+      "background": "#FFFFFF",
+      "surface": "#FAFAFA",
+      "foreground": "#262626",
+      "muted": "#8E8E8E",
+      "primary": "#0095F6",
+      "border": "#DBDBDB",
+      "like": "#ED4956",
+      "instagram_gradient": "bg-gradient-to-tr from-[#fbad50] via-[#bc2a8d] to-[#8a3ab9]"
+    },
+    "theme": "light",
+    "instructions": "Use white for main backgrounds, off-white for separation if needed. Text should never be pure black (#000000), use #262626. Action blue is #0095F6. Use the gradient for Story rings and main brand moments."
+  },
+  "layout_strategies": {
+    "feed": {
+      "container": "max-w-md mx-auto md:max-w-lg pb-20 pt-14",
+      "item_spacing": "space-y-6",
+      "media_aspect": "aspect-[4/5] object-cover rounded-sm border border-black/5"
+    },
+    "grid_bento": {
+      "container": "grid grid-cols-3 gap-0.5 md:gap-4",
+      "item": "aspect-square object-cover hover:opacity-90 transition-opacity"
+    },
+    "reels": {
+      "container": "h-[calc(100vh-50px)] w-full snap-y snap-mandatory overflow-y-scroll scrollbar-hide",
+      "item": "h-full w-full snap-center relative"
+    }
+  },
+  "components": {
+    "BottomNav": {
+      "path": "/app/frontend/src/components/layout/BottomNav.js",
+      "specs": "Fixed bottom, 5 icons (Home, Search, Create, Reels, Profile), height 50px, border-t, bg-white/90 backdrop-blur-md z-50",
+      "icons": "Use lucide-react icons: Home, Search, SquarePlus, Clapperboard, User (or Avatar)"
+    },
+    "TopNav": {
+      "path": "/app/frontend/src/components/layout/TopNav.js",
+      "specs": "Sticky top, logo left, actions right (Heart, Message), height 54px, bg-white/90 backdrop-blur-md z-40 px-4 border-b border-black/5"
+    },
+    "StoryRail": {
+      "path": "/app/frontend/src/components/feed/StoryRail.js",
+      "specs": "Horizontal scroll, no scrollbar, p-4, gap-4. Items: Gradient ring p-[2px] rounded-full -> white border p-[2px] -> Avatar."
+    },
+    "FeedPost": {
+      "path": "/app/frontend/src/components/feed/FeedPost.js",
+      "specs": "Header (Avatar + Username + MoreIcon), Media (Full width/aspect 4:5), Actions (Heart, Message, Send - Save right), Likes count, Caption, Comments link."
+    }
+  },
+  "visual_enhancers": {
+    "glassmorphism": "backdrop-blur-xl bg-white/80 border-b border-white/20",
+    "shadows": "shadow-[0_2px_12px_rgba(0,0,0,0.04)]",
+    "micro_interactions": "Active states on buttons scale down 0.95. Heart icon pops on click."
+  },
+  "image_urls": {
+    "avatars": [
+      "https://images.unsplash.com/photo-1757700356475-40b0c6c5554e?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2NDN8MHwxfHNlYXJjaHwzfHx1cmJhbiUyMGZhc2hpb24lMjBwb3J0cmFpdCUyMGRpdmVyc2V8ZW58MHx8fHwxNzcwNTY2NzA2fDA&ixlib=rb-4.1.0&q=85",
+      "https://images.unsplash.com/photo-1582657233895-0f37a3f150c0?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2NDN8MHwxfHNlYXJjaHwxfHx1cmJhbiUyMGZhc2hpb24lMjBwb3J0cmFpdCUyMGRpdmVyc2V8ZW58MHx8fHwxNzcwNTY2NzA2fDA&ixlib=rb-4.1.0&q=85",
+      "https://images.unsplash.com/photo-1763328719057-ff6b03c816d0?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2NDN8MHwxfHNlYXJjaHwyfHx1cmJhbiUyMGZhc2hpb24lMjBwb3J0cmFpdCUyMGRpdmVyc2V8ZW58MHx8fHwxNzcwNTY2NzA2fDA&ixlib=rb-4.1.0&q=85"
+    ],
+    "feed_posts": [
+      "https://images.unsplash.com/photo-1680210849773-f97a41c6b7ed?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzB8MHwxfHNlYXJjaHw0fHxhZXN0aGV0aWMlMjBtb2Rlcm4lMjBpbnRlcmlvciUyMGRlc2lnbnxlbnwwfHx8fDE3NzA1NjY3MDd8MA&ixlib=rb-4.1.0&q=85",
+      "https://images.unsplash.com/photo-1748909082924-ec91097de9af?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1OTN8MHwxfHNlYXJjaHwzfHxuYXR1cmUlMjBsYW5kc2NhcGUlMjB2ZXJ0aWNhbCUyMHRyYXZlbHxlbnwwfHx8fDE3NzA1NjY3MDh8MA&ixlib=rb-4.1.0&q=85",
+      "https://images.unsplash.com/photo-1766491764801-bc6e409b60e4?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NTJ8MHwxfHNlYXJjaHwzfHxkZWxpY2lvdXMlMjBmb29kJTIwcGhvdG9ncmFwaHklMjBtaW5pbWFsfGVufDB8fHx8MTc3MDU2NjcwOHww&ixlib=rb-4.1.0&q=85",
+      "https://images.unsplash.com/photo-1719150006656-958724675d9d?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzB8MHwxfHNlYXJjaHwzfHxhZXN0aGV0aWMlMjBtb2Rlcm4lMjBpbnRlcmlvciUyMGRlc2lnbnxlbnwwfHx8fDE3NzA1NjY3MDd8MA&ixlib=rb-4.1.0&q=85",
+      "https://images.unsplash.com/photo-1713959989861-2425c95e9777?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1OTN8MHwxfHNlYXJjaHwxfHxuYXR1cmUlMjBsYW5kc2NhcGUlMjB2ZXJ0aWNhbCUyMHRyYXZlbHxlbnwwfHx8fDE3NzA1NjY3MDh8MA&ixlib=rb-4.1.0&q=85",
+      "https://images.unsplash.com/photo-1766491765420-2f4f2c4bf49a?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NTJ8MHwxfHNlYXJjaHwyfHxkZWxpY2lvdXMlMjBmb29kJTIwcGhvdG9ncmFwaHklMjBtaW5pbWFsfGVufDB8fHx8MTc3MDU2NjcwOHww&ixlib=rb-4.1.0&q=85"
+    ]
+  },
+  "instructions_to_main_agent": [
+    "1. Setup Tailwind: Update tailwind.config.js to include the custom colors and font families.",
+    "2. Clean App.js/App.css: Remove the default React spinning logo. Make App.js the router root.",
+    "3. Icons: Install lucide-react (yarn add lucide-react). Use it for all UI icons.",
+    "4. Mobile First: Build for mobile width first, then center content max-w-md for desktop view.",
+    "5. Mock Data: Create a robust mock data file (data.js) using the provided image URLs.",
+    "6. Navigation: Ensure BottomNav is visible on all main screens (Home, Explore, Reels, Profile).",
+    "7. Reels: Implement a snap-scroll vertical container. Video can be simulated with tall images if actual video URLs are missing, but structure must be video-ready."
+  ],
+  "universal_guidelines": [
+    "Do NOT center align the app container text globally.",
+    "Use data-testid for all interactive elements.",
+    "Ensure high contrast for text (WCAG AA).",
+    "No generic gradients - use the specific Instagram gradient only for branding.",
+    "Smooth scrolling is mandatory."
+  ]
+}

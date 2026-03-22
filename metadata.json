@@ -1,0 +1,8 @@
+{
+  "name": "fairy",
+  "description": "A sophisticated AI-powered social media experience where you can generate, edit, and share high-quality images using Gemini.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}

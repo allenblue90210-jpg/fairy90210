@@ -1,0 +1,22 @@
+﻿--- Port 5173 Check ---
+No process listening on 5173 or error: Cannot overwrite variable PID because it is read-only or constant.
+
+--- All Node Processes ---
+PID: 9604
+CommandLine: "C:\Program Files\Adobe\Adobe Creative Cloud Experience\libs\node.exe" "C:\Program Files\Adobe\Adobe Creative Cloud Experience\js\main.js"
+-------------------
+PID: 18720
+CommandLine: "C:\Users\Allen\Documents\Adobe\Adobe Photoshop 2020\node.exe" "C:\Users\Allen\Documents\Adobe\Adobe Photoshop 2020\Required\Generator-builtin" --launchreason alwayson --photoshopVersion 21.0 --photoshopPath "C:\Users\Allen\Documents\Adobe\Adobe Photoshop 2020" --photoshopBinaryPath "C:\Users\Allen\Documents\Adobe\Adobe Photoshop 2020" --photoshopLogPath "C:\Users\Allen\AppData\Roaming\Adobe\Adobe Photoshop 2020\Logs" -i \\.\pipe\d18f23be-0db3-db4e-9988-2f2a7927db2c_i -o \\.\pipe\d18f23be-0db3-db4e-9988-2f2a7927db2c_o -f "C:\Users\Allen\Documents\Adobe\Adobe Photoshop 2020\Required\Plug-ins\Generator" -f "C:\Users\Allen\Documents\Adobe\Adobe Photoshop 2020\Plug-ins\Generator"
+-------------------
+PID: 18552
+CommandLine: "C:\Program Files\Common Files\Adobe\Creative Cloud Libraries\libs\node.exe" "C:\Program Files\Common Files\Adobe\Creative Cloud Libraries\js\server.js"
+-------------------
+PID: 23480
+CommandLine: "C:\Program Files\nodejs\node.exe" "C:\Program Files\nodejs/node_modules/npm/bin/npm-cli.js" run dev
+-------------------
+PID: 15700
+CommandLine: "node"   "C:\Users\Allen\.gemini\antigravity\scratch\fairy90210\node_modules\.bin\\..\vite\bin\vite.js" 
+-------------------
+PID: 2792
+CommandLine: C:\Users\Allen\AppData\Local\ms-playwright-go\1.50.1\node.exe C:\Users\Allen\AppData\Local\ms-playwright-go\1.50.1\package\cli.js run-driver
+-------------------
