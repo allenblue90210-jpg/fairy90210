@@ -4,7 +4,6 @@ import { Post } from '../types';
 import { HeartIcon, CommentIcon, SendIcon, BookmarkIcon, PlayIcon, PhoneIcon, EyeIcon, HoneyJarIcon, ProfileFireIcon, CircleCommentIcon, ProfileHoneyJarIcon, ProfilePhoneIcon, ProfileMaskIcon, ProfileEndEyeIcon, ProfileSquirtGunIcon, ProfileCommentIcon, ProfileSendMessageIcon, ProfileLiveCommentsIcon, GhostIcon } from './Icons';
 import MaskedEyeModal from './MaskedEyeModal';
 
-
 interface PostCardProps {
   post: Post;
   onLike: (id: string) => void;
@@ -18,6 +17,7 @@ const PostCard: React.FC<PostCardProps> = ({ post, onLike, isHatMorphed, hideEne
   const [commentText, setCommentText] = useState('');
   const [isFireMorphed, setIsFireMorphed] = useState(false);
   const [isMaskedEyeModalOpen, setIsMaskedEyeModalOpen] = useState(false);
+  const [isBattleOpen, setIsBattleOpen] = useState(false);
   const [isAdverb, setIsAdverb] = useState(false);
   const [isAngryEyesActive, setIsAngryEyesActive] = useState(false);
   const [viewState, setViewState] = useState<'enemy' | 'pencil' | 'hidden'>(hideEnemy ? 'pencil' : 'enemy');
@@ -61,6 +61,115 @@ const PostCard: React.FC<PostCardProps> = ({ post, onLike, isHatMorphed, hideEne
         </button>
       </div>
       <hr className="border-t border-gray-200 w-full mb-0" />
+
+      {/* ── Inline Battle System ── */}
+      {isBattleOpen && (
+      <div className="px-5 py-4 flex flex-col gap-3 bg-white animate-in slide-in-from-top-2 fade-in duration-300 border-b border-gray-100 shadow-sm relative z-10">
+        {/* Headers */}
+        <div className="flex flex-col gap-1 w-full">
+          {isHatMorphed && (
+            <div className="flex justify-between items-end w-full">
+              <h2 className="font-bold text-[28px] tracking-tight leading-none text-[#E52B31]">WINNER</h2>
+              <h2 className="font-bold text-[28px] tracking-tight leading-none text-[#2C469D]">LOSER</h2>
+            </div>
+          )}
+          <div className="text-[17px] font-bold text-gray-900 leading-none mt-1">
+            Preference estimate
+          </div>
+        </div>
+
+        {/* Avatars, Timer */}
+        <div className="flex justify-between items-center w-full mt-3 px-1">
+          {/* Left avatar */}
+          <div className="flex items-center gap-3">
+            <img src="https://picsum.photos/seed/freda/200/200" className="w-[54px] h-[54px] rounded-full object-cover shadow-sm border border-gray-100" alt="Freda" />
+            {isHatMorphed && <div className="text-[16px] font-bold text-[#E52B31]">52.0%</div>}
+          </div>
+          {/* Timer */}
+          <div className="text-[14px] font-bold text-gray-900">
+            0:00:00
+          </div>
+          {/* Right avatar */}
+          <div className="flex items-center gap-3">
+            {isHatMorphed && <div className="text-[16px] font-bold text-[#2C469D]">48.0%</div>}
+            <img src="https://picsum.photos/seed/heather/200/200" className="w-[54px] h-[54px] rounded-full object-cover shadow-sm border border-gray-100" alt="Heather" />
+          </div>
+        </div>
+
+        {/* Names */}
+        <div className="flex justify-between items-center w-full mt-1.5 px-2">
+          <div className="font-bold text-[13.5px] text-gray-900 leading-tight">
+            Freda Da. pepper
+          </div>
+          <div className="font-bold text-[13.5px] text-gray-900 leading-tight">
+            Heather Slime
+          </div>
+        </div>
+
+        {/* Buttons and Counts */}
+        <div className="flex items-center justify-between w-full mt-2 pl-2">
+          {/* Like Side */}
+          <div className="flex items-center gap-3">
+            <img src="/icons/btn_red_thumb.png" className="w-[110px] h-auto object-contain shadow-sm cursor-pointer active:scale-95 transition-transform" alt="Winner Vote" />
+            {isHatMorphed && (
+              <div className="flex flex-col leading-tight ml-1.5">
+                <span className="text-[11.5px] font-medium text-gray-900 tracking-tight">234,095</span>
+                <span className="text-[11.5px] text-gray-600 tracking-tight">Likes</span>
+              </div>
+            )}
+          </div>
+          
+          <div className="w-px h-9 mx-2 bg-gray-300"></div>
+
+          {/* Dislike Side */}
+          <div className="flex items-center gap-3 justify-end pr-1">
+            {isHatMorphed && (
+              <div className="flex flex-col leading-tight items-end mr-1.5">
+                <span className="text-[11.5px] font-medium text-gray-900 tracking-tight">90,000</span>
+                <span className="text-[11.5px] text-gray-600 tracking-tight">Dislikes</span>
+              </div>
+            )}
+            {/* Kept blue button slightly wider (125px compared to 110px) as requested */}
+            <img src="/icons/btn_blue_thumb.png" className="w-[125px] h-auto object-contain shadow-sm cursor-pointer active:scale-95 transition-transform" alt="Loser Vote" />
+          </div>
+        </div>
+
+        {/* Red/Blue Bar — only in creepy doll (isHatMorphed) mode */}
+        {isHatMorphed && (
+          <div className="flex flex-col w-full mt-5 px-1">
+            <div className="flex w-full h-[7px] rounded-full overflow-hidden items-center relative">
+              <div className="h-full bg-[#E52B31]" style={{ width: '51%' }}></div>
+              <div className="h-full bg-[#2C469D]" style={{ width: '49%' }}></div>
+              <div className="absolute left-[51%] w-[4px] h-full bg-white -ml-[2px]" />
+            </div>
+            <div className="flex justify-between items-center w-full mt-1.5">
+              <span className="text-[12.5px] font-bold text-[#E52B31]">Red</span>
+              <span className="text-[12.5px] font-bold text-[#2C469D]">Blue</span>
+            </div>
+          </div>
+        )}
+
+        {/* Slider */}
+        <div className="relative h-6 w-full flex items-end mt-1 mb-2 px-1">
+          <div className="w-full absolute bottom-[2px] border-b-[3px] border-[#F0D420]"></div>
+          <div className="w-full absolute bottom-[-4px] border-b-[4px] border-[#F0D420]"></div>
+          <div 
+            className="absolute bottom-[-1px] pointer-events-none"
+            style={{ left: `calc(50% - 14px)` }}
+          >
+            <div 
+              className="w-0 h-0"
+              style={{
+                borderLeft: '14px solid transparent',
+                borderRight: '14px solid transparent',
+                borderBottom: `16px solid #F0D420`
+              }}
+            />
+          </div>
+        </div>
+      </div>
+      )}
+
       {/* Header */}
       <div className="flex items-center p-3">
         <img
@@ -146,7 +255,7 @@ const PostCard: React.FC<PostCardProps> = ({ post, onLike, isHatMorphed, hideEne
                 <div className="w-1.5 h-1.5 rounded-full bg-gray-300"></div>
                 <div className="w-1.5 h-1.5 rounded-full bg-gray-300"></div>
               </div>
-              <button className="hover:scale-110 transition-transform">
+              <button className="hover:scale-110 transition-transform translate-x-8">
                 <ProfileSendMessageIcon />
               </button>
             </div>
@@ -237,7 +346,10 @@ const PostCard: React.FC<PostCardProps> = ({ post, onLike, isHatMorphed, hideEne
                 <ProfileLiveCommentsIcon />
               </button>
               <div className="flex gap-6 -translate-y-3">
-                <button className="hover:scale-110 transition-transform -translate-x-8">
+                <button 
+                  className="hover:scale-110 active:scale-95 transition-transform -translate-x-8"
+                  onClick={() => setIsBattleOpen(prev => !prev)}
+                >
                   <div className="relative w-24 h-24 flex items-center justify-center">
                     <div className={`absolute inset-0 flex items-center justify-center transition-all duration-500 ${isHatMorphed ? 'opacity-0 scale-75 pointer-events-none' : 'opacity-100 scale-100'}`}>
                       <ProfileMaskIcon />
@@ -245,7 +357,7 @@ const PostCard: React.FC<PostCardProps> = ({ post, onLike, isHatMorphed, hideEne
                     <img 
                       src="/icons/creepy_doll.png" 
                       className={`absolute inset-0 w-20 h-20 m-auto object-contain transition-all duration-500 ${isHatMorphed ? 'opacity-100 scale-100' : 'opacity-0 scale-75 pointer-events-none'}`} 
-                      alt="Creepy Doll" 
+                      alt="Girl Icon" 
                     />
                   </div>
                 </button>

@@ -1,0 +1,43 @@
+/* ── Floating Doll Bounce ── */
+@keyframes dollFloat {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-8px) scale(1.02); }
+}
+
+.doll-float {
+  animation: dollFloat 2.8s ease-in-out infinite;
+}
+
+/* ── Sparkle particles ── */
+@keyframes sparkle1 {
+  0%, 100% { opacity: 0; transform: translate(0, 0) scale(0.5); }
+  50% { opacity: 1; transform: translate(-10px, -15px) scale(1); }
+}
+@keyframes sparkle2 {
+  0%, 100% { opacity: 0; transform: translate(0, 0) scale(0.5); }
+  50% { opacity: 1; transform: translate(8px, -18px) scale(1.2); }
+}
+@keyframes sparkle3 {
+  0%, 100% { opacity: 0; transform: translate(0, 0) scale(0.5); }
+  50% { opacity: 1; transform: translate(12px, -6px) scale(1); }
+}
+@keyframes sparkle4 {
+  0%, 100% { opacity: 0; transform: translate(0, 0) scale(0.4); }
+  50% { opacity: 1; transform: translate(-12px, -4px) scale(0.9); }
+}
+
+.sparkle-1 { animation: sparkle1 2.2s ease-in-out infinite 0s; }
+.sparkle-2 { animation: sparkle2 2.5s ease-in-out infinite 0.4s; }
+.sparkle-3 { animation: sparkle3 2.8s ease-in-out infinite 0.8s; }
+.sparkle-4 { animation: sparkle4 2.0s ease-in-out infinite 1.2s; }
+
+/* ── Battle Modal Spring Slide ── */
+@keyframes battleSlideIn {
+  0% { opacity: 0; transform: translateY(60px) scale(0.85); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes battleSlideOut {
+  0% { opacity: 1; transform: translateY(0) scale(1); }
+  100% { opacity: 0; transform: translateY(40px) scale(0.9); }
+}
+

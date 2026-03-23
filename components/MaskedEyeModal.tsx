@@ -144,35 +144,35 @@ const MaskedEyeModal: React.FC<MaskedEyeModalProps> = ({ isOpen, onClose, isAdva
           <div className="flex justify-between px-2">
             <div className="w-12 h-12 flex items-center justify-center relative">
               {isAdvanced ? (
-                <img src="/icons/char_1.png" alt="Yellow Bear" className="absolute w-full h-full object-contain transform scale-[1.35] transition-transform duration-300" />
+                <img src="/icons/red.png" alt="Red Monster" className="absolute w-full h-full object-contain transform scale-[1.35] transition-transform duration-300" />
               ) : (
                 <img src="/icons/star_fail.png" alt="Fail" className="absolute w-full h-full object-contain transform scale-[0.85] transition-transform duration-300" />
               )}
             </div>
             <div className="w-12 h-12 flex items-center justify-center relative">
               {isAdvanced ? (
-                <img src="/icons/char_2.png" alt="Blue Dog" className="absolute w-full h-full object-contain transform scale-[1.35] translate-y-[2px] transition-transform duration-300" />
+                <img src="/icons/orange.png" alt="Orange Monster" className="absolute w-full h-full object-contain transform scale-[1.35] translate-y-[2px] transition-transform duration-300" />
               ) : (
                 <img src="/icons/star_poor.png" alt="Poor" className="absolute w-full h-full object-contain transform translate-y-[2px] transition-transform duration-300" />
               )}
             </div>
             <div className="w-12 h-12 flex items-center justify-center relative">
               {isAdvanced ? (
-                <img src="/icons/char_3.png" alt="Green Alien" className="absolute w-full h-full object-contain transform scale-[1.35] transition-transform duration-300" />
+                <img src="/icons/yellow.png" alt="Yellow Monster" className="absolute w-full h-full object-contain transform scale-[1.35] transition-transform duration-300" />
               ) : (
                 <img src="/icons/star_fair.png" alt="Fair" className="absolute w-full h-full object-contain transform scale-[0.85] transition-transform duration-300" />
               )}
             </div>
             <div className="w-12 h-12 flex items-center justify-center relative">
               {isAdvanced ? (
-                <img src="/icons/char_4.png" alt="Orange Squirrel" className="absolute w-full h-full object-contain transform scale-[1.35] transition-transform duration-300" />
+                <img src="/icons/blue.png" alt="Blue Monster" className="absolute w-full h-full object-contain transform scale-[1.35] transition-transform duration-300" />
               ) : (
                 <img src="/icons/star_good.png" alt="Good" className="absolute w-full h-full object-contain transition-transform duration-300" />
               )}
             </div>
             <div className="w-12 h-12 flex items-center justify-center relative">
               {isAdvanced ? (
-                <img src="/icons/char_5.png" alt="Red Duck" className="absolute w-full h-full object-contain transform scale-[1.35] transition-transform duration-300" />
+                <img src="/icons/green.png" alt="Green Monster" className="absolute w-full h-full object-contain transform scale-[1.35] transition-transform duration-300" />
               ) : (
                 <img src="/icons/star_very_good.png" alt="Very good" className="absolute w-full h-full object-contain transition-transform duration-300" />
               )}
