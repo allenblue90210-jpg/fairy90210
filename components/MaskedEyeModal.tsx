@@ -10,6 +10,8 @@ const MaskedEyeModal: React.FC<MaskedEyeModalProps> = ({ isOpen, onClose, isAdva
   const [thumbSrc, setThumbSrc] = useState<string | null>(null);
   const [selectedScore, setSelectedScore] = useState<string>('8.9');
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
+  const sliderRef = useRef<HTMLDivElement>(null);
   const [showBars, setShowBars] = useState(false);
   const [checkedCategories, setCheckedCategories] = useState<boolean[]>([true, true, true]);
   
@@ -98,6 +100,35 @@ const MaskedEyeModal: React.FC<MaskedEyeModalProps> = ({ isOpen, onClose, isAdva
     }
   }, [isOpen, selectedScore]);
 
+  const handleSliderMove = (clientX: number) => {
+    if (sliderRef.current) {
+      const rect = sliderRef.current.getBoundingClientRect();
+      const x = clientX - rect.left;
+      const percent = Math.min(Math.max(0, x / rect.width), 1);
+      const score = (1 + percent * 9).toFixed(1);
+      setSelectedScore(score);
+    }
+  };
+
+  useEffect(() => {
+    if (!isDragging) return;
+    const onMouseMove = (e: MouseEvent) => handleSliderMove(e.clientX);
+    const onTouchMove = (e: TouchEvent) => handleSliderMove(e.touches[0].clientX);
+    const onEnd = () => setIsDragging(false);
+    
+    window.addEventListener('mousemove', onMouseMove);
+    window.addEventListener('mouseup', onEnd);
+    window.addEventListener('touchmove', onTouchMove);
+    window.addEventListener('touchend', onEnd);
+    
+    return () => {
+      window.removeEventListener('mousemove', onMouseMove);
+      window.removeEventListener('mouseup', onEnd);
+      window.removeEventListener('touchmove', onTouchMove);
+      window.removeEventListener('touchend', onEnd);
+    };
+  }, [isDragging]);
+
   if (!isOpen) return null;
 
   return (
@@ -151,14 +182,14 @@ const MaskedEyeModal: React.FC<MaskedEyeModalProps> = ({ isOpen, onClose, isAdva
             </div>
             <div className="w-12 h-12 flex items-center justify-center relative">
               {isAdvanced ? (
-                <img src="/icons/orange.png" alt="Orange Monster" className="absolute w-full h-full object-contain transform scale-[1.35] translate-y-[2px] transition-transform duration-300" />
+                <img src="/icons/orange.png?v=4" alt="Orange Monster" className="absolute w-full h-full object-contain transform scale-[1.35] translate-y-[2px] transition-transform duration-300" />
               ) : (
                 <img src="/icons/star_poor.png" alt="Poor" className="absolute w-full h-full object-contain transform translate-y-[2px] transition-transform duration-300" />
               )}
             </div>
             <div className="w-12 h-12 flex items-center justify-center relative">
               {isAdvanced ? (
-                <img src="/icons/yellow.png" alt="Yellow Monster" className="absolute w-full h-full object-contain transform scale-[1.35] transition-transform duration-300" />
+                <img src="/icons/yellow.png" alt="Yellow Monster" className="absolute w-full h-full object-contain transform scale-[1.65] transition-transform duration-300" />
               ) : (
                 <img src="/icons/star_fair.png" alt="Fair" className="absolute w-full h-full object-contain transform scale-[0.85] transition-transform duration-300" />
               )}
@@ -172,7 +203,7 @@ const MaskedEyeModal: React.FC<MaskedEyeModalProps> = ({ isOpen, onClose, isAdva
             </div>
             <div className="w-12 h-12 flex items-center justify-center relative">
               {isAdvanced ? (
-                <img src="/icons/green.png" alt="Green Monster" className="absolute w-full h-full object-contain transform scale-[1.35] transition-transform duration-300" />
+                <img src="/icons/green.png" alt="Green Monster" className="absolute w-full h-full object-contain transform scale-[1.65] transition-transform duration-300" />
               ) : (
                 <img src="/icons/star_very_good.png" alt="Very good" className="absolute w-full h-full object-contain transition-transform duration-300" />
               )}
@@ -182,12 +213,32 @@ const MaskedEyeModal: React.FC<MaskedEyeModalProps> = ({ isOpen, onClose, isAdva
           {/* Gradient slider */}
           <div className="relative flex flex-col gap-1 -mt-1">
             <div className="flex items-center w-full gap-2 relative">
-              <span className="text-gray-400 text-lg font-medium leading-none w-3 text-center -mt-0.5 select-none">−</span>
-              <div className="relative h-1.5 flex-1 bg-gradient-to-r from-[#FF3B30] via-[#FF9500] via-[#FFCC00] to-[#34C759] rounded-full">
-                {/* Blue Slider Handle at far right */}
-                <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[18px] h-[18px] bg-[#007AFF] rounded-full border-[2.5px] border-white shadow-md cursor-pointer"></div>
+              <span className="text-gray-400 text-lg font-medium leading-none w-3 text-center -mt-0.5 select-none cursor-pointer hover:text-gray-600" onClick={() => {
+                const s = Math.max(1, parseFloat(selectedScore) - 0.1).toFixed(1);
+                setSelectedScore(s);
+              }}>−</span>
+              <div 
+                ref={sliderRef}
+                className="relative h-1.5 flex-1 bg-gradient-to-r from-[#FF3B30] via-[#FF9500] via-[#FFCC00] to-[#34C759] rounded-full cursor-pointer"
+                onMouseDown={(e) => {
+                  handleSliderMove(e.clientX);
+                  setIsDragging(true);
+                }}
+                onTouchStart={(e) => {
+                  handleSliderMove(e.touches[0].clientX);
+                  setIsDragging(true);
+                }}
+              >
+                {/* Blue Slider Handle */}
+                <div 
+                  className={`absolute top-1/2 -translate-y-1/2 w-[18px] h-[18px] bg-[#007AFF] rounded-full border-[2.5px] border-white shadow-md transition-shadow ${isDragging ? 'shadow-lg scale-110' : ''}`}
+                  style={{ left: `calc(${(parseFloat(selectedScore) - 1) / 9 * 100}% - 9px)` }}
+                ></div>
               </div>
-              <span className="text-gray-400 text-lg font-medium leading-none w-3 text-center -mt-0.5 select-none">+</span>
+              <span className="text-gray-400 text-lg font-medium leading-none w-3 text-center -mt-0.5 select-none cursor-pointer hover:text-gray-600" onClick={() => {
+                const s = Math.min(10, parseFloat(selectedScore) + 0.1).toFixed(1);
+                setSelectedScore(s);
+              }}>+</span>
             </div>
             {/* Labels below */}
             <div className="flex justify-between text-[11px] text-gray-400 font-medium px-6 tracking-tight">
